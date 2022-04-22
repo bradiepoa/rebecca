@@ -101,9 +101,9 @@ def Loginview(request):
 			if user.is_admin  or user.is_superuser:
 				return redirect('gettreat:dashboardpage')
 			elif user.is_hospital:
-				return redirect('gettreat:homepage')
-			else:
 				return redirect('gettreat:hospitapage')
+			else:
+				return redirect('gettreat:homepage')
 		else:
 			messages.info(request, "Invalid Username or Password")
 			return redirect('gettreat:loginpage')

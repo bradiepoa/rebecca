@@ -1,0 +1,93 @@
+{% extends 'gettreat/admin/main.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Page-header start -->
+{% include 'gettreat/admin/topnav.html' %}
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+  <!-- Main-body start -->
+  <div class="main-body">
+      <div class="page-wrapper">
+          <!-- Page-body start -->
+          <div class="page-body">
+              <div class="row">
+                 {% include 'gettreat/admin/reports.html' %}
+
+                  <!--  project and team member start -->
+                  <div class="col-md-12">
+                      <div class="card table-card">
+                          <div class="card-header bg-info">
+                              <h5>Hospitals</h5>
+                              <div class="card-header-right">
+                                  <ul class="list-unstyled card-option">
+                                      <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                      <li><i class="fa fa-window-maximize full-card"></i></li>
+                                      <li><i class="fa fa-minus minimize-card"></i></li>
+                                      <li><i class="fa fa-refresh reload-card"></i></li>
+                                      <li><i class="fa fa-trash close-card"></i></li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="card-block">
+                              <div class="table-responsive">
+                                  <table border="3" class="table table-hover">
+                                      <thead>
+                                      <tr>
+                                          <th class="text-center"></th>
+                                          <th class="text-center">Hospital Name</th>
+                                          <th class="text-center">Location</th>
+                                           <th class="text-center">contact</th>
+                                          <th class="text-center">Status</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      {% if hopit %}
+                                        {% for datails in hopit %}
+                                        
+                                          <tr>
+                                            <td>
+                                               <div class="d-inline-block align-middle">
+                                                    <img src="{{datails.imageURL}}" alt="user image" class="img-radius img-40 align-top m-r-15">
+                                                </div>
+                                              </td>
+                                              <td>{{datails.Hospital_Name}}</td>
+
+                                              <td>{{datails.Hospital_Loacation}}</td>
+
+                                              <td>{{datails.Contact}}</td>
+
+                                              <td class="text-right"><label class="label label-danger">{{datails.status}}</label></td>
+                                          </tr>
+                                        {% endfor %}
+                                        
+
+                                      {% else %}
+
+                                        <tr>
+                                          <p>Nohospital Yet</p>                                             
+                                        </tr>
+
+                                      {% endif %}
+                                      
+                                      </tbody>
+                                  </table>
+                                  <div class="text-right m-r-20">
+                                      <a href="" class=" b-b-primary text-primary">View All</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Page-body end -->
+      </div>
+      <div id="styleSelector"> </div>
+  </div>
+</div>
+<hr class="bg-primary">
+<hr class="bg-info">
+
+
+{% endblock content %}

@@ -1,0 +1,93 @@
+{% extends 'gettreat/admin/main.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Page-header start -->
+{% include 'gettreat/admin/topnav.html' %}
+<!-- Page-header end -->
+<div class="pcoded-inner-content">
+  <!-- Main-body start -->
+  <div class="main-body">
+      <div class="page-wrapper">
+          <!-- Page-body start -->
+          <div class="page-body">
+              <div class="row">
+                 {% include 'gettreat/admin/reports.html' %}
+
+                  <!--  project and team member start -->
+                  <div class="col-xl-8 col-md-12">
+                      <div class="card table-card">
+                          <div class="card-header bg-info">
+                              <h5>Clients</h5>
+                              <div class="card-header-right">
+                                  <ul class="list-unstyled card-option">
+                                      <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                      <li><i class="fa fa-window-maximize full-card"></i></li>
+                                      <li><i class="fa fa-minus minimize-card"></i></li>
+                                      <li><i class="fa fa-refresh reload-card"></i></li>
+                                      <li><i class="fa fa-trash close-card"></i></li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="card-block">
+                              <div class="table-responsive">
+                                  <table class="table table-hover">
+                                      <thead>
+                                      <tr>
+                                          <th></th>
+                                          <th>Name</th>
+                                          <th>Register Date</th>
+                                          <th class="text-right">Location</th>
+                                          <th>Hospital</th>
+                                          <th>Status</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      {% if patients %}
+                                        {% for clients in patients %}
+                                        
+                                          <tr>
+                                              <td>
+                                                 <div class="d-inline-block align-middle">
+                                                      <img src="{{clients.imageURL}}" alt="user image" class="img-radius img-40 align-top m-r-15">
+                                                  </div>
+                                                </td>
+                                              <td>{{clients.patient_Name}}</td>
+                                              <td>{{clients.Date_Of_Birth}}</td>
+                                              <td>{{clients.Address}}</td>
+                                              <td>{{clients.hospital}}</td>
+                                              <td class="text-right"><label class="label label-danger">{{clients.status}}</label></td>
+                                          </tr>
+                                        {% endfor %}
+                                        
+
+                                      {% else %}
+
+                                        <tr>
+                                          <p>We Have Not Any Clients To anr hospital Yet</p>                                             
+                                        </tr>
+
+                                      {% endif %}
+                                      
+                                      </tbody>
+                                  </table>
+                                  <div class="text-right m-r-20">
+                                      <a href="" class=" b-b-primary text-primary">View All</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  {% include 'gettreat/admin/hospitallist.html' %}
+              </div>
+          </div>
+          <!-- Page-body end -->
+      </div>
+      <div id="styleSelector"> </div>
+  </div>
+</div>
+<hr class="bg-primary">
+<hr class="bg-info">
+
+
+{% endblock content %}

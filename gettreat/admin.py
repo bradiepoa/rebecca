@@ -23,3 +23,5 @@ admin.site.register(Disease)
 
 admin.site.register(Bills)
 
+admin.site.register(Emergency)
+

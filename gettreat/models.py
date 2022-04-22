@@ -188,6 +188,33 @@ class Bills(models.Model):
 
     Paid_Date = models.DateTimeField(auto_now_add=True,)
 
+class Emergency(models.Model):
+
+    STATUS_CHOICES = (
+
+        ('declined', 'Declined'),
+        ('pending', 'Pending'),
+        ('picked', 'Picked'),
+
+        )
+
+
+    patient_Name = models.CharField(max_length=200, blank=True, null=True)
+
+    Phone_Number = models.CharField(max_length=15, blank=True, null=True)
+
+    patient_id = models.CharField(max_length=100, blank=True, null=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True)
+
+    Location_Discription = models.TextField(blank=True, null=True)
+
+    Request_Date = models.DateTimeField(auto_now_add=True, blank=True)
+
+    status = models.CharField(max_length=200, choices=STATUS_CHOICES, default='pending',blank=True)
+
+    def __str__(self):
+        return self.Phone_Number
+
 
 
 

@@ -16,9 +16,17 @@
 <header id="header" class="fixed-top">
 <div class="container d-flex align-items-center">
 
-  <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>
+  <a href="index.html" class="logo me-auto"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
   <!-- Uncomment below if you prefer to use an image logo -->
-  <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+  <h1 class="logo me-auto"><a href="">VF</a></h1>
+  {% if user.is_patient %}
+    <a href="{% url 'gettreat:clientspage' %}">Hello, {{request.user}}</a>  | &nbsp;
+    <a class="nav-link" href="{% url 'gettreat:clientspage' %}">Logout</a>
+  {% else %}
+    <a href="{% url 'gettreat:loginpage' %}"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+
+  {% endif %}
+
 
   <nav id="navbar" class="navbar order-last order-lg-0">
     <ul>
@@ -26,15 +34,9 @@
       <li><a class="nav-link scrollto" href="{% url 'gettreat:aboutpage' %}">About</a></li>
       <li><a class="nav-link scrollto" href="{% url 'gettreat:servicepage' %}">Services</a></li>
       <li><a class="nav-link scrollto" href="{% url 'gettreat:contactpage' %}">Contact Us</a></li>
-      {% if user.is_patient %}
-      <li><a class="nav-link scrollto" href="{% url 'gettreat:clientspage' %}">Hello, {{request.user}}</a></li>
     </ul>
     <i class="bi bi-list mobile-nav-toggle"></i>
   </nav><!-- .navbar -->
-  {% else %}
-
-  <a href="{% url 'gettreat:loginpage' %}" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
-  {% endif %}
 
 </div>
 </header><!-- End Header -->

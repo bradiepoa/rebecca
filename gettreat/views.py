@@ -46,6 +46,10 @@ def Clientsview(request):
 	context = {'form':form}
 	return render(request, 'gettreat/home/clients_infor.html',context)
 
+def LogoutUser(request):
+	logout(request)
+	return redirect('bookapp:loginpage')
+
 
 # Client view end of clients views================================================
 

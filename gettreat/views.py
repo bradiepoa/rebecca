@@ -36,8 +36,10 @@ def Aboutview(request):
 
 @login_required(login_url='gettreat:homepage')
 def Clientsview(request):
+	form = EmergencyForm()
 
-	return render(request, 'gettreat/home/clients_infor.html')
+	context = {'form':form}
+	return render(request, 'gettreat/home/clients_infor.html',context)
 
 
 # Client view end of clients views================================================

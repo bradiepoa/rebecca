@@ -1,25 +1,30 @@
 {% extends 'gettreat/home/main.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 
 <!-- ======= Counts Section ======= -->
 <br><br><br><br>
 <section>
-  <div class="container-fluid" data-aos="fade-up">
+  <div class="container" data-aos="fade-up">
 
     <div class="row">
       <div class="col-lg-12 col-md-6">
-        <div class="card bg-primary">
+        <div class="card">
         	<div class="card-body">
         		<form action="" method="POST">
         			{% csrf_token %}
 
-        			{{ form.as_p }}
+        			{{ form|crispy }}
+
+              <div class="form-group">
+                <input class=" form-control btn btn-success btn-lg" type="submit" name="Rquest Emergecy">
+            </div>
+
+              
 
         		</form>
-        		<p><strong>Doctors</strong> available</p>
-          		<a href="#">Find out more &raquo;</a>
         	</div>
         </div>
         </div>

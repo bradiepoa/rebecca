@@ -207,7 +207,7 @@ class Emergency(models.Model):
 
     location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True)
 
-    First_Choice_Hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE,blank=True)
+    First_Choice_Hospital = models.CharField(max_length=200, blank=True, null=True)
 
     Location_Discription = models.TextField(blank=True, null=True)
 

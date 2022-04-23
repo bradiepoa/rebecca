@@ -37,6 +37,11 @@ def Aboutview(request):
 @login_required(login_url='gettreat:homepage')
 def Clientsview(request):
 	form = EmergencyForm()
+	if request.method == 'POST':
+		form = EmergencyForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('gettreat:clientspage')
 
 	context = {'form':form}
 	return render(request, 'gettreat/home/clients_infor.html',context)

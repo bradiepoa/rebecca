@@ -16,7 +16,7 @@
 <header id="header" class="fixed-top">
 <div class="container d-flex align-items-center">
 
-  <a href="{% url 'gettreat:homepage' %}" class="logo me-auto"><img src="{% static 'assets/img/logo.JPG' %}" alt=""></a>
+  <a href="{% url 'gettreat:homepage' %}" class="logo me-auto"><img src="{% static 'assets/img/logo.jpg' %}" alt=""></a>
   {% if user.is_patient %}
     <a href="{% url 'gettreat:clientspage' %}">Hello, {{request.user}}</a>  | &nbsp;
     <a class="nav-link" href="{% url 'gettreat:clientspage' %}">Logout</a>

@@ -17,4 +17,15 @@ class EmergencyForm(ModelForm):
 	class Meta:
 		model = Emergency
 
-		exclude = ('status',)
+		fields = '__all__'
+
+
+
+
+
+class RegisterDoctorForm(ModelForm):
+	class Meta:
+		model = Our_Doctors
+
+		fields = '__all__'
+

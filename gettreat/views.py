@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 # login
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate, login,logout
@@ -41,6 +42,10 @@ def Clientsview(request):
 		form = EmergencyForm(request.POST)
 		if form.is_valid():
 			form.save()
+			messages.success(request, 'Emergency request sent successfully')
+			return redirect('gettreat:clientspage')
+		else:
+			messages.error(request, 'Emergency request not sent.. check your form')
 			return redirect('gettreat:clientspage')
 
 	context = {'form':form}
@@ -58,7 +63,47 @@ def LogoutUser(request):
 
 @login_required(login_url='gettreat:homepage')
 def Hospitaldash(request):
-	return render(request, 'gettreat/hospital/indexhp.html')
+
+	emerg = Emergency.objects.all()
+
+	context = {'emerg':emerg}
+	return render(request, 'gettreat/hospital/indexhp.html',context)
+
+@login_required(login_url='gettreat:homepage')
+def UPdateEmergency(request, pk_emerg):
+	emerg = Emergency.objects.get(id=pk_emerg)
+	form = EmergencyForm(instance=emerg)
+
+	if request.method == 'POST':
+		form = EmergencyForm(request.POST, instance=emerg)
+		if form.is_valid():
+			form.save()
+			messages.error(request, 'Emergency request updated successfully')
+			return redirect('gettreat:hospitapage')
+
+
+	context = {'form':form}
+	return render(request, 'gettreat/home/clients_infor.html',context)
+
+@login_required(login_url='gettreat:homepage')
+def DoctorForm(request):
+
+	form = RegisterDoctorForm()
+	if request.method == "POST":
+		form = RegisterDoctorForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+			messages.success(request,'Doctor registered successfully')
+			return redirect('gettreat:hospitapage')
+		else:
+			messages.success(request,'Doctor registered successfully')
+			return redirect('gettreat:doctors_formpage')
+
+
+
+	context = {'form':form}
+	return render(request, 'gettreat/hospital/doctors_form.html', context)
+
 
 
 
@@ -89,6 +134,9 @@ def EmergencyRequest(request):
 
 	context ={'hopit':hopit, 'emerg':emerg}
 	return render(request, 'gettreat/admin/emergency.html', context)
+
+
+
 
 @login_required(login_url='gettreat:homepage')
 def HospitalDetails(request):

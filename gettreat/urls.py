@@ -22,6 +22,10 @@ path('clients_infor/',views.Clientsview, name="clientspage"),
 
 path('indexhp/', views.Hospitaldash, name="hospitapage"),
 
+path('doctors_form/', views.DoctorForm, name="doctors_formpage"),
+
+path('updateEmergency/<str:pk_emerg>/', views.UPdateEmergency, name="updateEmergency"),
+
 # end of hospital view================================
 
 path('index', views.dashboard, name="dashboardpage"),

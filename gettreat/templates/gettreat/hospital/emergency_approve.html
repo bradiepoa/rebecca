@@ -1,0 +1,33 @@
+{% extends 'gettreat/hospital/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}<!-- ======= Counts Section ======= -->
+<br><br><br><br>
+<section>
+  <div class="container" data-aos="fade-up">
+
+    <div class="row">
+      <div class="col-lg-12 col-md-6">
+        <div class="card">
+        	<div class="card-body">
+        		<form action="" method="POST">
+        			{% csrf_token %}
+
+        			{{ form|crispy }}
+
+              <div class="form-group">
+                <input class=" form-control btn btn-success btn-lg" type="submit" name="Rquest Emergecy">
+            </div>
+
+              
+
+        		</form>
+        	</div>
+        </div>
+        </div>
+    </div>
+  </div>
+</section><!-- End Counts Section -->
+
+{% endblock content %}
+

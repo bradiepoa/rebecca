@@ -81,7 +81,11 @@ class Hospital_Services(models.Model):
 class Our_Doctors(models.Model):
     Hospital_Name = models.ForeignKey(Hospital, on_delete=models.CASCADE, blank=True,null=True)
     Doctors_Name = models.CharField(max_length=200, blank=True, null=True)
-    DepartmentName = models.ManyToManyField(Departments)
+    Department_Name = models.ManyToManyField(Departments)
+    Phone_Number = models.CharField(max_length=15, blank=True, null=True)
+    Email = models.CharField(max_length=15, blank=True, null=True)
+    Registered_Date = models.DateTimeField(auto_now_add=True, blank=True)
+
 
     def __str__(self):
         return self.Doctors_Name
@@ -205,9 +209,7 @@ class Emergency(models.Model):
 
     patient_id = models.CharField(max_length=100, blank=True, null=True)
 
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True)
-
-    First_Choice_Hospital = models.CharField(max_length=200, blank=True, null=True)
+    Hospital = models.CharField(max_length=200, blank=True, null=True)
 
     Location_Discription = models.TextField(blank=True, null=True)
 
@@ -216,7 +218,7 @@ class Emergency(models.Model):
     status = models.CharField(max_length=200, choices=STATUS_CHOICES, default='pending',blank=True)
 
     def __str__(self):
-        return self.Phone_Number
+        return self.Request_Date
 
 
 

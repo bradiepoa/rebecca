@@ -187,9 +187,9 @@ def Loginview(request):
 		if user is not None and user.is_active:
 			auth.login(request,user)
 			if user.is_admin  or user.is_superuser:
-				return redirect('gettreat:dashboardpage')
+				return redirect('gettreat:homepage')
 			elif user.is_hospital:
-				return redirect('gettreat:hospitapage')
+				return redirect('gettreat:homepage')
 			else:
 				return redirect('gettreat:homepage')
 		else:

@@ -79,12 +79,18 @@ class Hospital_Services(models.Model):
 
 
 class Our_Doctors(models.Model):
+    STATUS_CHOICES = (
+        ('permanent', 'Permanent'),
+        ('temperory', 'Temperory'),
+        ('not available', 'Not available'),
+        )
     Hospital_Name = models.ForeignKey(Hospital, on_delete=models.CASCADE, blank=True,null=True)
     Doctors_Name = models.CharField(max_length=200, blank=True, null=True)
     Department_Name = models.ManyToManyField(Departments)
     Phone_Number = models.CharField(max_length=15, blank=True, null=True)
     Email = models.CharField(max_length=15, blank=True, null=True)
     Registered_Date = models.DateTimeField(auto_now_add=True, blank=True)
+    status = models.CharField(max_length=200, choices=STATUS_CHOICES, default='temperory', blank=True, null=True)
 
 
     def __str__(self):
@@ -199,6 +205,7 @@ class Emergency(models.Model):
         ('declined', 'Declined'),
         ('pending', 'Pending'),
         ('picked', 'Picked'),
+        ('admitted', 'Admitted'),
 
         )
 

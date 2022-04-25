@@ -104,6 +104,35 @@ def DoctorForm(request):
 	context = {'form':form}
 	return render(request, 'gettreat/hospital/doctors_form.html', context)
 
+@login_required(login_url='gettreat:homepage')
+def ListDoctors(request):
+
+	doct = Our_Doctors.objects.all()
+
+	context = {'doct':doct}
+	return render(request, 'gettreat/hospital/listdoctors.html',context)
+
+
+@login_required(login_url='gettreat:homepage')
+def UpdateDoctor(request, pk_updd):
+
+	doct = Our_Doctors.objects.get(id=pk_updd)
+	form = RegisterDoctorForm(instance=doct)
+	if request.method == 'POST':
+		form = RegisterDoctorForm(request.POST, request.FILES)
+
+		if form.is_valid():
+			form.save()
+			messages.success(request, 'Doctor updated successfully')
+			return redirect('gettreat:listdoctorspage')
+		else:
+			messages.error(request, 'Failed to update, check your form..!!')
+			return redirect('gettreat:listdoctorspage')
+
+
+	context = {'form':form}
+	return render(request, 'gettreat/hospital/doctors_form.html', context)
+
 
 
 

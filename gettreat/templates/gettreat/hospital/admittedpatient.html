@@ -48,7 +48,7 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th></th>
+                                    <!-- <th></th> -->
                                     <th>patient Name</th>
                                     <th>Phone Number</th>
                                     <th class="text-right">Patient ID</th>
@@ -63,7 +63,7 @@
                                   {% for clients in emerg %}
                                   
                                     <tr>
-                                        <td><a href="{% url 'gettreat:updateEmergency' clients.id %}"><label class="label label-info">Edit</label> </a> </td>
+                                        <!-- <td><a href="{% url 'gettreat:updateEmergency' clients.id %}"><label class="label label-info">Edit</label> </a> </td> -->
                                         <td>{{clients.patient_Name}}</td>
                                         <td>{{clients.Phone_Number}}</td>
                                         <td>{{clients.patient_id}}</td>

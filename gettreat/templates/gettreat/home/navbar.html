@@ -19,7 +19,6 @@
   <a href="{% url 'gettreat:homepage' %}" class="logo me-auto"><img src="{% static 'assets/img/logo.jpg' %}" alt=""></a>
   {% if user.is_patient %}
     <a href="{% url 'gettreat:clientspage' %}">Hello, {{request.user}}</a>  | &nbsp;
-    <a class="nav-link" href="{% url 'gettreat:logout' %}">Logout</a>
   {% elif user.is_hospital %}
 
      <a href="{% url 'gettreat:hospitapage' %}">Hello,H-admin: {{request.user}}</a>  | &nbsp;
@@ -35,7 +34,7 @@
   {% if user.is_authenticated %}
      <a class="nav-link" href="{% url 'gettreat:logout' %}">Logout</a>
   {% else %}
-    <a href="{% url 'gettreat:loginpage' %}"><span class="d-none d-md-inline">Sign</span> Up</a>
+    <a href="{% url 'gettreat:loginpage' %}">Sign Up</a>
 
   {% endif %}
 

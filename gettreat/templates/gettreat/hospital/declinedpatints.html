@@ -1,0 +1,107 @@
+{% extends 'gettreat/hospital/main.html' %}
+{% load static %}
+{% block content %}
+
+          <!-- Page-header start -->
+          <div class="page-header">
+          <div class="page-block">
+              <div class="row align-items-center">
+                  <div class="col-md-8">
+                      <div class="page-header-title">
+                          <h5 class="m-b-10">Dashboard</h5>
+                          <p class="m-b-0">Hospital name</p>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <ul class="breadcrumb-title">
+                          <li class="breadcrumb-item">
+                              <a href=""> <i class="fa fa-home"></i> </a>
+                          </li>
+                          <li class="breadcrumb-item"><a href="">Dashboard</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          </div>
+          <!-- Page-header end -->
+          {% include 'gettreat/hospital/reports.html' %}
+
+            <!--  project and team member start -->
+            <div class="col-lg-12 col-md-12">
+                <div class="card table-card">
+                    <div class="card-header bg-info">
+                        <h5>Emergency Request</h5>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                <li><i class="fa fa-window-maximize full-card"></i></li>
+                                <li><i class="fa fa-minus minimize-card"></i></li>
+                                <li><i class="fa fa-refresh reload-card"></i></li>
+                                <li><i class="fa fa-trash close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                          {% include '../messages.html' %}
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>patient Name</th>
+                                    <th>Phone Number</th>
+                                    <th class="text-right">Patient ID</th>
+                                    <th>Hospital</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if emerg %}
+                                  {% for clients in emerg %}
+                                  
+                                    <tr>
+                                        <td><a href="{% url 'gettreat:updateEmergency' clients.id %}"><label class="label label-info">Edit</label> </a> </td>
+                                        <td>{{clients.patient_Name}}</td>
+                                        <td>{{clients.Phone_Number}}</td>
+                                        <td>{{clients.patient_id}}</td>
+                                        <td>{{clients.Hospital}}</td>
+                                        <td class="text-right">{{clients.Request_Date}}</td>
+                                         <td class="text-right"><label class="label label-danger">{{clients.status}}</label></td>
+
+                                    </tr>
+                                  {% endfor %}
+                                  
+
+                                {% else %}
+
+                                  <tr>
+                                    <p>We Have Not Any Clients To any hospital Yet</p>                                             
+                                  </tr>
+
+                                {% endif %}
+                                
+                                </tbody>
+                            </table>
+                            <div class="text-right m-r-20">
+                                <a href="#!" class=" b-b-primary text-primary">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Page-body end -->
+</div>
+<div id="styleSelector"> </div>
+</div>
+</div>
+<hr class="bg-primary">
+<hr class="bg-info">
+
+
+{% endblock content %}

@@ -133,7 +133,21 @@ def UpdateDoctor(request, pk_updd):
 	context = {'form':form}
 	return render(request, 'gettreat/hospital/doctors_form.html', context)
 
+@login_required(login_url='gettreat:homepage')
+def AdmittedPatience(request):
 
+	emerg = Emergency.objects.filter(status='admitted')
+
+	context = {'emerg':emerg}
+	return render(request, 'gettreat/hospital/admittedpatient.html', context)
+
+@login_required(login_url='gettreat:homepage')
+def DeclainedPatients(request):
+
+	emerg = Emergency.objects.filter(status='declined')
+
+	context = {'emerg':emerg}
+	return render(request, 'gettreat/hospital/declinedpatints.html', context)
 
 
 # end of hopital views=============================================================

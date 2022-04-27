@@ -6,7 +6,7 @@
         <div class="main-menu-header">
             <img class="img-80 img-radius" src="{% static 'assets/images/avatar-4.jpg' %}" alt="User-Profile-Image">
             <div class="user-details">
-                <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
+                <span id="more-details">{{request.user}}<i class="fa fa-caret-down"></i></span>
             </div>
         </div>
 
@@ -65,7 +65,7 @@
     <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Emergency &amp; Section</div>
     <ul class="pcoded-item pcoded-left-item">
         <li>
-            <a href="" class="waves-effect waves-dark">
+            <a href="{% url 'gettreat:hospitapage' %}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                 <span class="pcoded-mtext" data-i18n="nav.form-components.main">
                 Emergency Requests</span>
@@ -73,7 +73,7 @@
             </a>
         </li>
         <li>
-            <a href="" class="waves-effect waves-dark">
+            <a href="{% url 'gettreat:admittedpatientpage' %}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                 <span class="pcoded-mtext" data-i18n="nav.form-components.main">Admitted Patients</span>
                 <span class="pcoded-mcaret"></span>
@@ -81,16 +81,16 @@
         </li>
 
         <li>
-            <a href="" class="waves-effect waves-dark">
+            <a href="{% url 'gettreat:declinedpatientspage' %}" class="waves-effect waves-dark">
                 <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Discharged Patients</span>
+                <span class="pcoded-mtext" data-i18n="nav.form-components.main">Declained requests</span>
                 <span class="pcoded-mcaret"></span>
             </a>
         </li>
 
     </ul>
 
-    <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Chart &amp; Maps</div>
+    <!-- <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Chart &amp; Maps</div>
     <ul class="pcoded-item pcoded-left-item">
         <li>
             <a href="" class="waves-effect waves-dark">
@@ -137,6 +137,6 @@
             </ul>
         </li>
 
-    </ul>
+    </ul> -->
 </div>
 </nav>

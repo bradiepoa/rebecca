@@ -25,6 +25,11 @@ path('indexhp/', views.Hospitaldash, name="hospitapage"),
 path('doctors_form/', views.DoctorForm, name="doctors_formpage"),
 path('listdoctors/',views.ListDoctors, name='listdoctorspage'),
 
+path('admittedpatient/',views.AdmittedPatience, name='admittedpatientpage'),
+
+path('declinedpatients/',views.DeclainedPatients, name='declinedpatientspage'),
+
+
 path('updatedoctors/<str:pk_updd>/', views.UpdateDoctor, name="updatedoctors"),
 
 path('updateEmergency/<str:pk_emerg>/', views.UPdateEmergency, name="updateEmergency"),

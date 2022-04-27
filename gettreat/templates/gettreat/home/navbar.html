@@ -23,7 +23,6 @@
   {% elif user.is_hospital %}
 
      <a href="{% url 'gettreat:hospitapage' %}">Hello,H-admin: {{request.user}}</a>  | &nbsp;
-     <a class="nav-link" href="{% url 'gettreat:logout' %}">Logout</a>
   {% else %}
     
 

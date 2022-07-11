@@ -84,6 +84,21 @@ def UPdateEmergency(request, pk_emerg):
 
 	context = {'form':form}
 	return render(request, 'gettreat/home/clients_infor.html',context)
+	# department
+@login_required(login_url='gettreat:homepage')
+def DepartmentForm_view(request):
+
+	form = DepartmentForm()
+	if request.method == 'POST':
+		form = DepartmentForm(request.POST)
+		if form.is_valid():
+			form.save()
+			name = form.cleaned_data.get('Department_Name')
+			messages.success(request,'Department registered successfully')
+			return redirect('gettreat:hospitapage')
+
+	context= {'form':form}
+	return render(request, 'gettreat/hospital/departmentform.html', context)
 
 @login_required(login_url='gettreat:homepage')
 def DoctorForm(request):
@@ -98,17 +113,15 @@ def DoctorForm(request):
 		else:
 			messages.success(request,'Doctor registered successfully')
 			return redirect('gettreat:doctors_formpage')
-
-
-
 	context = {'form':form}
 	return render(request, 'gettreat/hospital/doctors_form.html', context)
 
 @login_required(login_url='gettreat:homepage')
 def ListDoctors(request):
-
-	doct = Our_Doctors.objects.all()
-
+	user = request.user
+	
+	doct = Our_Doctors.objects.filter()
+	
 	context = {'doct':doct}
 	return render(request, 'gettreat/hospital/listdoctors.html',context)
 

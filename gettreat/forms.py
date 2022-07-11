@@ -29,3 +29,9 @@ class RegisterDoctorForm(ModelForm):
 
 		fields = '__all__'
 
+class DepartmentForm(ModelForm):
+	class Meta:
+
+		model = Departments
+
+		fields = '__all__'

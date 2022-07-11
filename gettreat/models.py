@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
@@ -33,12 +34,6 @@ class Location(models.Model):
     def __str__(self):
         return self.Hospital_Loacation
 
-class Departments(models.Model):
-    Department_Name = models.CharField(max_length=200, blank=True, null=True)
-    DateAdded = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.Department_Name
 
 class Hospital(models.Model):
 
@@ -69,13 +64,13 @@ class Hospital(models.Model):
         return url
 
 
-class Hospital_Services(models.Model):
-    Hospital_Name = models.ForeignKey(Hospital, on_delete=models.SET_NULL, blank=True, null=True)
-    Departments = models.ForeignKey(Departments, on_delete=models.SET_NULL, blank=True, null=True)
-    Service_Offered = models.CharField(max_length=200, blank=True, null=True)
+class Departments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    Name = models.CharField(max_length=200, blank=True, null=True)
+    DateAdded = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.Service_Offered
+        return self.Name
 
 
 class Our_Doctors(models.Model):
@@ -84,9 +79,10 @@ class Our_Doctors(models.Model):
         ('temperory', 'Temperory'),
         ('not available', 'Not available'),
         )
-    Hospital_Name = models.ForeignKey(Hospital, on_delete=models.CASCADE, blank=True,null=True)
+    is_active = models.BooleanField(default=True)
+    Hospital_Name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, editable=False, blank=True,null=True)
     Doctors_Name = models.CharField(max_length=200, blank=True, null=True)
-    Department_Name = models.ManyToManyField(Departments)
+    departments = models.ForeignKey(Departments,on_delete=models.SET_NULL, blank=True,null=True)
     Phone_Number = models.CharField(max_length=15, blank=True, null=True)
     Email = models.CharField(max_length=15, blank=True, null=True)
     Registered_Date = models.DateTimeField(auto_now_add=True, blank=True)
@@ -95,6 +91,15 @@ class Our_Doctors(models.Model):
 
     def __str__(self):
         return self.Doctors_Name
+
+
+class Hospital_Services(models.Model):
+    Hospital_Name = models.ForeignKey(Hospital, on_delete=models.SET_NULL, blank=True, null=True)
+    department = models.ForeignKey(Departments, on_delete=models.SET_NULL, blank=True, null=True)
+    Service_Offered = models.CharField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return self.Service_Offered
 
 class Our_Patients(models.Model):
     STATUS_CHOICES = (

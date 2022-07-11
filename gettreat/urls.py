@@ -33,6 +33,7 @@ path('declinedpatients/',views.DeclainedPatients, name='declinedpatientspage'),
 path('updatedoctors/<str:pk_updd>/', views.UpdateDoctor, name="updatedoctors"),
 
 path('updateEmergency/<str:pk_emerg>/', views.UPdateEmergency, name="updateEmergency"),
+path('departmentform/',views.DepartmentForm_view, name='departmentformpage'),
 
 # end of hospital view================================
 
